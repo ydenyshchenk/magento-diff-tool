@@ -1,0 +1,193 @@
+html,
+body {
+    min-height: 100%;
+}
+body.hello {
+    color: #fff;
+    background-color: #333;
+    -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+    /*text-shadow: 0 1px 3px rgba(0,0,0,.5);*/
+}
+
+.mb5 {margin-bottom: 5px;}
+.mb10 {margin-bottom: 10px;}
+
+a {cursor: pointer;}
+
+.site-wrapper {
+    display: table;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+}
+.site-wrapper-inner {
+    display: table-cell;
+    vertical-align: top;
+}
+.cover-container {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.inner {
+    padding: 30px;
+}
+
+.masthead-brand {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.masthead-nav > li {
+    display: inline-block;
+}
+.masthead-nav > li + li {
+    margin-left: 20px;
+}
+.masthead-nav > li > a {
+    padding-right: 0;
+    padding-left: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    color: rgba(255,255,255,.75);
+    border-bottom: 2px solid transparent;
+}
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+    background-color: transparent;
+    border-bottom-color: #a9a9a9;
+    border-bottom-color: rgba(255,255,255,.25);
+}
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+    color: #fff;
+    border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+    .masthead-brand {
+        float: left;
+    }
+    .masthead-nav {
+        float: right;
+    }
+}
+
+.cover {
+    padding: 0 20px;
+}
+.cover .btn-lg {
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+.mastfoot {
+    color: #999;
+    color: rgba(255,255,255,.5);
+}
+
+@media (min-width: 768px) {
+    .masthead {
+        position: fixed;
+        top: 0;
+    }
+    .mastfoot {
+        position: fixed;
+        bottom: 0;
+    }
+    .site-wrapper-inner {
+        vertical-align: middle;
+    }
+    .masthead,
+    .mastfoot,
+    .cover-container {
+        width: 100%;
+    }
+}
+
+@media (min-width: 992px) {
+    .masthead,
+    .mastfoot,
+    .cover-container {
+        width: 700px;
+    }
+}
+
+
+.tCenter {text-align: center;}
+.tJustify {text-align: justify;}
+.tLeft {text-align: left;}
+.tRight {text-align: right;}
+
+
+
+
+.diff-file {
+    margin: 30px;
+    padding: 0 30px 30px 30px;
+    border-bottom: 3px solid #333;
+    background-color: bisque;
+}
+.diff-string {background-color: #ffffff;}
+.diff-string-added {background-color: #71ff92;}
+.diff-string-deleted {background-color: #ff5c45;}
+
+.diff-control-hello {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 700px;
+    height: 100px;
+    margin-top: -50px;
+    margin-left: -350px;
+    text-align: center;
+    font-size: 40px;
+}
+
+.diff-control-hello select, .diff-control-hello select option{
+    font-size: 40px;
+    line-height: 50px;
+    vertical-align: middle;
+}
+
+.diff-control-result {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 30px;
+    background-color: #333;
+    border-bottom: 3px solid #333;
+    color: #fff
+}
+
+.diff-control-hello form, .diff-control-result form {display: inline;}
+
+.diff-control-result select, .diff-control-result select option {
+    font-size: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+}
+
+.diff-form {display: none; min-height: 180px; line-height: 2; max-width: 600px; margin-left: auto; margin-right: auto;}
+.diff-form.active {display: block;}
+
+.diff-logs {margin: 10px 0; padding: 10px 30px; box-sizing: border-box;}
+.diff-logs:hover {background-color: #fffc9b; cursor: pointer;}
+.diff-logs-left {border-left: 20px solid #ffe438; padding-left: 10px;}
+.diff-logs-right {border-right: 20px solid #ffe438; padding-right: 10px;}
+.diff-logs-info {display: none; background-color: #ffe438;}
+.diff-logs.active {background-color: #ffe438;}
+.diff-logs.active .diff-logs-info {display: block;}
+
+.sql-SELECT {color: #6495ed; font-weight: bold;}
+.sql-INSERT {color: #01c533; font-weight: bold;}
+.sql-UPDATE {color: #ffa701; font-weight: bold;}
+.sql-DELETE {color: #ff371c; font-weight: bold;}
+
+table th, table td {padding: 3px 5px;}
