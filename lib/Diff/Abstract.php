@@ -119,7 +119,7 @@ abstract class Diff_Abstract
         $db = $this->_config['db'];
 
         try {
-            $PDO = new PDO('mysql:host=localhost', $db['user'], $db['pass']);
+            $PDO = new PDO('mysql:host=' . $db['host'], $db['user'], $db['pass']);
         } catch (PDOException $e) {
             exit ('<h1>' . $e->getCode() . ': ' .$e->getMessage() . '</h1>');
         }
