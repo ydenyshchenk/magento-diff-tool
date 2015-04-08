@@ -1,0 +1,9 @@
+DirectoryIndex index.php
+RewriteEngine On
+RewriteBase /
+Options +FollowSymLinks -Indexes -MultiViews
+#RewriteCond %{REQUEST_URI} (.*/[^/.]+)($|\?)
+#RewriteRule .*/ [R,L,QSA]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*) index.php?{REQUEST_URI}
