@@ -40,7 +40,7 @@ if (!file_exists($configPath)) {
 }
 
 $_request = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
-switch(current($_request)) {
+switch(end($_request)) {
     case 'db': {
         /** @var Diff_Db $diffDb */
         $diffDb = new Diff_Db();
