@@ -11,10 +11,10 @@ abstract class Diff_Abstract
     protected $_HTML = null;
 
     public $tools = array(
-        'db' => array('class' => 'Diff_Db','url' => '/db', 'name' => 'Config diff', 'desc' => 'shows all non-default configurations set in DB'),
-        'file' => array('class' => 'Diff_File', 'url' => '/file', 'name' => 'Files diff', 'desc' => 'shows changes of core files'),
-        'triggers' => array('class' => 'Diff_Triggers', 'url' => '/triggers', 'name' => 'Triggers diff', 'desc' => 'shows differences in statements DB triggers'),
-        'logs' => array('class' => 'Diff_Logs', 'url' => '/logs', 'name' => 'Logs diff', 'desc' => 'shows differences in between MySQL logs'),
+        'db' => array('class' => 'Diff_Db','url' => 'db', 'name' => 'Config diff', 'desc' => 'shows all non-default configurations set in DB'),
+        'file' => array('class' => 'Diff_File', 'url' => 'file', 'name' => 'Files diff', 'desc' => 'shows changes of core files'),
+        'triggers' => array('class' => 'Diff_Triggers', 'url' => 'triggers', 'name' => 'Triggers diff', 'desc' => 'shows differences in statements DB triggers'),
+        'logs' => array('class' => 'Diff_Logs', 'url' => 'logs', 'name' => 'Logs diff', 'desc' => 'shows differences in between MySQL logs'),
     );
 
     public function __construct()

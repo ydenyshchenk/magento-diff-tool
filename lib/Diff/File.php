@@ -17,7 +17,7 @@ class Diff_File extends Diff_Abstract
     {
         $entities = $this->_getDirectoryList();
 
-        $form = '<form method="post" action="' . $this->tools['file']['url'] . '">Compare folders';
+        $form = '<form method="post" action="' . BU . $this->tools['file']['url'] . '">Compare folders';
         $form .= $this->_renderSelect('currentPath', 'diff[compare_path]', $this->_config['core_paths'], $comparePath)
             . ' between ';
         unset($entities['all']);

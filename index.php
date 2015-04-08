@@ -18,6 +18,8 @@ if (file_exists($configPath)) {
     require_once $configPath;
 }
 
+define('BU', $config['base_url']);
+
 $paths = array();
 $paths[] = BP . DS . 'app' . DS . 'code' . DS . 'local';
 $paths[] = BP . DS . 'app' . DS . 'code' . DS . 'community';

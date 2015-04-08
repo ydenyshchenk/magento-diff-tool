@@ -43,7 +43,7 @@ class Diff_Triggers extends Diff_Abstract
         $entitiesEE = $this->_getDbList('ee');
         $entitiesSUPEE = $this->_getDbList('supee');
 
-        $form = '<form method="post" action="' . $this->tools['triggers']['url'] . '">Show trigger statements diff between ';
+        $form = '<form method="post" action="' . BU . $this->tools['triggers']['url'] . '">Show trigger statements diff between ';
         $form .= $this->_renderSelect('ee', 'diff[ee]', $entitiesEE, $ee);
         $form .= ' clean at ';
         $form .= $this->_renderSelect('supee', 'diff[supee]', $entitiesSUPEE, $supee);

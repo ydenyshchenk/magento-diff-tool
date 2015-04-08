@@ -17,7 +17,7 @@ class Diff_Logs extends Diff_Abstract
 
     public function renderForm($ee = '', $supee = '')
     {
-        $form = '<form method="post" action="' . $this->tools['logs']['url'] . '">Show logs diff'
+        $form = '<form method="post" action="' . BU .$this->tools['logs']['url'] . '">Show logs diff'
             . '<input type="hidden" name="diff[ee]" value="1">'
             . '<input type="hidden" name="diff[supee]" value="1">'
             . '<input type="file" name="diff[file0]">'
