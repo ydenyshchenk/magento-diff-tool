@@ -68,7 +68,7 @@ abstract class Diff_Abstract
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
     Magento Diff Tool <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" role="menu"><li><a href="/">Home</a></li><li class="divider"></li>' . $buttons . '</ul>
+  <ul class="dropdown-menu" role="menu"><li><a href="' . BU . '">Home</a></li><li class="divider"></li>' . $buttons . '</ul>
 </div>
         ';
         return $html;
