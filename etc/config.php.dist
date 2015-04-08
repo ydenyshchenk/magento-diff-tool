@@ -1,0 +1,17 @@
+<?php
+$config = array(
+    'base_url' => '{{base_url}}',
+    'scan_dir' => '{{scan_dir}}',
+    'ee_prefix' => '{{ee_prefix}}',
+    'supee_prefix' => '{{supee_prefix}}',
+    'core_paths' => array(
+        {{core_paths}}
+    ),
+    'db' => array(
+        'host' => '{{db_host}}',
+        'user' => '{{db_user}}',
+        'pass' => '{{db_pass}}',
+        'ee_prefix' => '{{db_ee_prefix}}',
+        'supee_prefix' => '{{db_supee_prefix}}',
+    ),
+);
