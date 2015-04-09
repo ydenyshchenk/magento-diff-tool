@@ -4,16 +4,16 @@ class Install
 {
     protected $_HTML = null;
     protected $_form = array(
-        'base_url' => 'Base dir',
-        'scan_dir' => 'Projects dir',
-        'ee_prefix' => 'Prefix for EE projects',
-        'supee_prefix' => 'Prefix for SUPEE projects',
-        'core_paths' => 'Paths to diff: app/code/core, lib/',
+        'base_url' => 'Base url: http://diff.local/',
+        'scan_dir' => 'Projects root dir for scan: /var/www/',
+        'ee_prefix' => 'Prefix for EE projects: ee-',
+        'supee_prefix' => 'Prefix for SUPEE project dir: supee-',
+        'core_paths' => 'app/code/core, app/design/, lib/',
         'db_host' => 'DB hostname',
         'db_user' => 'DB user',
         'db_pass' => 'DB password',
-        'db_ee_prefix' => 'DB prefix for EE DB names',
-        'db_supee_prefix' => 'DB prefix for SUPEE DB names',
+        'db_ee_prefix' => 'DB prefix for EE DB names: ee-',
+        'db_supee_prefix' => 'DB prefix for SUPEE DB names: supee-',
     );
 
     public function __construct()
