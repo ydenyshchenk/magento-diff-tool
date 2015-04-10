@@ -18,7 +18,7 @@ class Html
     <link rel="stylesheet" href="' . BU . 'resources/css/local.css">
     <script src="' . BU . 'resources/js/jquery-2.1.3.min.js"></script>
     <script src="' . BU . 'resources/js/bootstrap.min.js"></script>
-    <script src="' . BU . 'resources/js/local.js?2"></script>
+    <script src="' . BU . 'resources/js/local.js"></script>
 </head>
 <body class="' . $bodyClass .'">';
         echo $html;
