@@ -13,7 +13,7 @@ define('DS', DIRECTORY_SEPARATOR);
 define('PS', PATH_SEPARATOR);
 define('BP', dirname(__FILE__));
 
-$configPath = BP . DS . 'etc' . DS . 'config.php';
+$configPath = BP . DS . 'app' . DS . 'etc' . DS . 'config.php';
 if (file_exists($configPath)) {
     require_once $configPath;
 }
@@ -21,7 +21,7 @@ if (file_exists($configPath)) {
 define('BU', $config['base_url']);
 
 $paths = array();
-$paths[] = BP . DS . 'app';
+$paths[] = BP . DS . 'app' . DS . 'code';
 $paths[] = BP . DS . 'lib';
 
 $appPath = implode(PS, $paths);

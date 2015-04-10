@@ -59,7 +59,7 @@ class Diff_File extends Diff_Abstract
 
     public function run()
     {
-        $diffStorage = BP . DS . 'diffs';
+        $diffStorage = BP . DS . 'var' . DS . 'diffs';
         //$diffXclude = ' ';//'-x \'*.txt\'';
         $diffOptions = "-ENwbur";
         $diffIgnore = "--ignore-matching-lines='Copyright (c)' --exclude=.svn";

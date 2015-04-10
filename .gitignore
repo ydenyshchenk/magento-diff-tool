@@ -1,2 +1,2 @@
-etc/config.php
+app/etc/config.php
 var/diffs/*.diff

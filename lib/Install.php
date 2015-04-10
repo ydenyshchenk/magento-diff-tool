@@ -40,7 +40,7 @@ class Install
         if (!empty($_POST['i'])) {
             $formData = $_POST['i'];
 
-            $dist = file_get_contents(BP . DS . 'etc' . DS . 'config.php.dist');
+            $dist = file_get_contents(BP . DS . 'app' . DS . 'etc' . DS . 'config.php.dist');
 
             $pattern = array();
             $replacement = array();
@@ -52,7 +52,7 @@ class Install
                 $replacement[] = $v;
             }
             $dist = preg_replace($pattern, $replacement, $dist);
-            $result = @file_put_contents(BP . DS . 'etc' . DS . 'config.php', $dist);
+            $result = @file_put_contents(BP . DS . 'app' . DS . 'etc' . DS . 'config.php', $dist);
             if ($result) {
                 header('Location: ' . $formData['base_url']);
             }
