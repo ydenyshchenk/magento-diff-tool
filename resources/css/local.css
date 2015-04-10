@@ -13,6 +13,11 @@ body.hello {
 .mb5 {margin-bottom: 5px;}
 .mb10 {margin-bottom: 10px;}
 
+input[type=file] {
+    display: inline-block;
+    width: 200px;
+}
+
 a {cursor: pointer;}
 
 .site-wrapper {
@@ -181,9 +186,8 @@ a {cursor: pointer;}
 .diff-logs:hover {background-color: #fffc9b; cursor: pointer;}
 .diff-logs-left {border-left: 20px solid #ffe438; padding-left: 10px;}
 .diff-logs-right {border-right: 20px solid #ffe438; padding-right: 10px;}
-.diff-logs-info {display: none; background-color: #ffe438;}
+.diff-logs-info {margin-top: 10px; color: #6495ed;}
 .diff-logs.active {background-color: #ffe438;}
-.diff-logs.active .diff-logs-info {display: block;}
 
 .sql-SELECT {color: #6495ed; font-weight: bold;}
 .sql-INSERT {color: #01c533; font-weight: bold;}

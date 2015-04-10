@@ -4,10 +4,11 @@ class Diff_Logs extends Diff_Abstract
 {
     protected $_filesData = false;
     protected $_filesDataByHash = false;
+    protected $_uploadedData = false;
     public function __construct()
     {
         $class = '';
-        if (!isset($_POST['diff']) || empty($_POST['diff'])) {
+        if ( !($files = $this->_getUploadedFiles()) ) {
             $class = 'hello';
         }
         $this->_HTML = new Html('Logs diff', $class);
@@ -15,22 +16,20 @@ class Diff_Logs extends Diff_Abstract
         return true;
     }
 
-    public function renderForm($ee = '', $supee = '')
+    public function renderForm()
     {
-        $form = '<form method="post" action="' . BU .$this->tools['logs']['url'] . '">Show logs diff'
-            . '<input type="hidden" name="diff[ee]" value="1">'
-            . '<input type="hidden" name="diff[supee]" value="1">'
-            . '<input type="file" name="diff[file0]">'
-            . '<input type="file" name="diff[file1]">';
+        $form = '<form method="post" enctype="multipart/form-data" action="' . BU .$this->tools['logs']['url'] . '">Show logs diff '
+            . '<input type="file" name="file0">'
+            . '<input type="file" name="file1">';
 
         $form .= ' <input type="submit" value="Submit" class="btn btn-primary"></form>';
 
         return $form;
     }
 
-    protected function _renderForm($ee = '', $supee = '', $page = 'hello')
+    protected function _renderForm($page = 'hello')
     {
-        $form = $this->renderForm($ee, $supee);
+        $form = $this->renderForm();
         $html = $this->_renderToolbar($form, $page);
         return $html;
     }
@@ -151,33 +150,43 @@ class Diff_Logs extends Diff_Abstract
         return $sql;
     }
 
+    protected function _getUploadedFiles()
+    {
+        if (empty($_FILES) || empty($_FILES['file0']['tmp_name']) || empty($_FILES['file1']['tmp_name'])) {
+            return false;
+        }
+        if ($this->_uploadedData === false) {
+            $this->_uploadedData = $_FILES;
+        }
+        return $this->_uploadedData;
+    }
+
+    protected function _unlinkUploadedFiles()
+    {
+        foreach($this->_uploadedData as $f) {
+            unlink($f['tmp_name']);
+        }
+    }
+
     public function run()
     {
-        if (
-            $_POST && isset($_POST['diff']) && !empty($_POST['diff'])
-            && isset($_POST['diff']['ee']) && !empty($_POST['diff']['ee'])
-            && isset($_POST['diff']['supee']) && !empty($_POST['diff']['supee'])
-        ) {
-            $d = $_POST['diff'];
-            $eeVersion = $d['ee'];
-            $db = $d['supee'];
-        }
-
-        if (empty($d) || empty($eeVersion) || empty($db)) {
+        if ( !($files = $this->_getUploadedFiles()) ) {
             echo $this->_renderForm();
             exit();
-        } elseif (!empty($eeVersion) && !empty($db)) {
-            echo $this->_renderForm($eeVersion, $db, 'result');
         }
+
+        echo $this->_renderForm('result');
 
 
         echo '<div class="container" style="margin-top: 60px;">';
 
-        $file0 = BP . DS . 'temp' . DS . 'log0.log';
-        $file1 = BP . DS . 'temp' . DS . 'log1.log';
+        $file0 = $files['file0']['tmp_name'];
+        $file1 = $files['file1']['tmp_name'];
 
         $queries0 = $this->_parseLog($file0);
         $queries1 = $this->_parseLog($file1);
+
+        $this->_unlinkUploadedFiles();
 
         $hashes0 = $this->_getQueryHashes($queries0);
         $hashes1 = $this->_getQueryHashes($queries1);

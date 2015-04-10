@@ -21,9 +21,7 @@ if (file_exists($configPath)) {
 define('BU', $config['base_url']);
 
 $paths = array();
-$paths[] = BP . DS . 'app' . DS . 'code' . DS . 'local';
-$paths[] = BP . DS . 'app' . DS . 'code' . DS . 'community';
-$paths[] = BP . DS . 'app' . DS . 'code' . DS . 'core';
+$paths[] = BP . DS . 'app';
 $paths[] = BP . DS . 'lib';
 
 $appPath = implode(PS, $paths);
