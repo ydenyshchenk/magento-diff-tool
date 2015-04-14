@@ -45,7 +45,7 @@ class Diff_Triggers extends Diff_Abstract
 
         $form = '<form method="post" action="' . BU . $this->tools['triggers']['url'] . '">Show trigger statements diff between ';
         $form .= $this->_renderSelect('ee', 'diff[ee]', $entitiesEE, $ee);
-        $form .= ' clean at ';
+        $form .= ' and ';
         $form .= $this->_renderSelect('supee', 'diff[supee]', $entitiesSUPEE, $supee);
         $form .= ' <input type="submit" value="Submit" class="btn btn-primary"></form>';
 

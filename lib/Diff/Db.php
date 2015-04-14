@@ -164,10 +164,10 @@ class Diff_Db extends Diff_Abstract
         $entitiesEE = $this->_getDirectoryList('ee');
         $entitiesSUPEE = $this->_getDbList('supee');
 
-        $form = '<form method="post" action="' . BU . $this->tools['db']['url'] . '">Show custom configuration at ';
-        $form .= $this->_renderSelect('supee', 'diff[supee]', $entitiesSUPEE, $supee);
-        $form .= ' clean at ';
+        $form = '<form method="post" action="' . BU . $this->tools['db']['url'] . '">Show configuration diff between ';
         $form .= $this->_renderSelect('ee', 'diff[ee]', $entitiesEE, $ee);
+        $form .= ' and ';
+        $form .= $this->_renderSelect('supee', 'diff[supee]', $entitiesSUPEE, $supee);
         $form .= ' <input type="submit" value="Submit" class="btn btn-primary"></form>';
 
         return $form;
