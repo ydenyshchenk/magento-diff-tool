@@ -141,12 +141,6 @@ class Diff_Logs extends Diff_Abstract
     {
 
         $sql = preg_replace('/^(?:SELECT|INSERT|UPDATE|DELETE)/ui', '<span class="sql-$0">$0</span>', $sql);
-/*
-        $sql = preg_replace('/^SELECT/', '<span class="sql-select">SELECT</span>', $sql);
-        $sql = preg_replace('/^INSERT/', '<span class="sql-insert">INSERT</span>', $sql);
-        $sql = preg_replace('/^UPDATE/', '<span class="sql-update">UPDATE</span>', $sql);
-        $sql = preg_replace('/^DELETE/', '<span class="sql-delete">DELETE</span>', $sql);
-*/
         return $sql;
     }
 

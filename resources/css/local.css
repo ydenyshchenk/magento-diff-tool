@@ -189,6 +189,9 @@ a {cursor: pointer;}
 .diff-logs-info {margin-top: 10px; color: #6495ed;}
 .diff-logs.active {background-color: #ffe438;}
 
+.table-results {margin-top: 60px; margin-bottom: 50px; font-size: 12px; line-height: 1.5;}
+
+
 .sql-SELECT {color: #6495ed; font-weight: bold;}
 .sql-INSERT {color: #01c533; font-weight: bold;}
 .sql-UPDATE {color: #ffa701; font-weight: bold;}

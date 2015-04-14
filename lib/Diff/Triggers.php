@@ -83,9 +83,9 @@ class Diff_Triggers extends Diff_Abstract
 
 
 
-        $html = '<table border="1" style="margin-top: 60px; font-size: 12px; line-height: 1.5;">';
-        $html .= '<tr><td>trigger</td><td>event</td><td>statement ('
-            . count($triggers) . ')</td><td>default statement (' . count($coreTriggers) . ')</td></tr>';
+        $html = '<table class="table-bordered table-results">';
+        $html .= '<thead><tr><th>Trigger</th><th>Event</th><th>Statement ('
+            . count($triggers) . ')</th><th>Default statement (' . count($coreTriggers) . ')</th></tr></thead><tbody>';
 
         foreach ($triggers as $code => $t) {
             $s = $t['statement'];
@@ -103,7 +103,7 @@ class Diff_Triggers extends Diff_Abstract
 
             $html .= '</tr>';
         }
-        $html .= '';
+        $html .= '</tbody></table>';
 
         echo '<div class="container">' . $html . '</div>';
     }

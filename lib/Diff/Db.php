@@ -206,13 +206,13 @@ class Diff_Db extends Diff_Abstract
         //analyze
         $analyzeResults = $this->_analyzeConfig($defaultConfigData, $coreConfigData);
 
-        $analyzeResultsHtml = '<table border="1" style="margin-top: 60px; font-size: 12px; line-height: 1.5;">';
-        $analyzeResultsHtml .= '<tr>'
+        $analyzeResultsHtml = '<table class="table-bordered table-results">';
+        $analyzeResultsHtml .= '<thead><tr>'
             . '<th>path</th>'
             . '<th>value</th>'
             . '<th>default</th>'
             . '<th>scope</th>'
-            . '</tr>';
+            . '</tr></thead><tbody>';
 
         $entities = $analyzeResults['core'];
 
@@ -244,7 +244,7 @@ class Diff_Db extends Diff_Abstract
             }
             $analyzeResultsHtml .= '</tr>';
         }
-        $analyzeResultsHtml .= '</table>';
+        $analyzeResultsHtml .= '</tbody></table>';
 
         echo $analyzeResultsHtml;
         echo '</div>';
