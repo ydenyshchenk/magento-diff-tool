@@ -35,7 +35,8 @@ class Diff extends Diff_Abstract
 
           <div class="mastfoot">
             <div class="inner">
-              <p>by <a href="mailto:ydenyshchenk@ebay.com">YuriyDenyshchenko</a>.</p>
+                <p>git clone <a href="https://github.com/ydenyshchenk/magento-diff-tool">https://github.com/ydenyshchenk/magento-diff-tool</a>.git .</p>
+                <p>by <a href="mailto:ydenyshchenk@ebay.com">YuriyDenyshchenko</a>.</p>
             </div>
           </div>
         </div>
