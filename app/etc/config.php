@@ -14,4 +14,5 @@ $config = array(
         'ee_prefix' => 'ee-',
         'supee_prefix' => 'supee-',
     ),
+    'diff_file__add_ee_to_supee' => false
 );

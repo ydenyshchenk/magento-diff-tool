@@ -181,7 +181,9 @@ abstract class Diff_Abstract
                 'supee' => (isset($matchesSupEE[1]) && !empty($matchesSupEE[1])) ? $matchesSupEE[1] : array(),
             );
 
-            $this->_directoryList['supee'] = array_merge($this->_directoryList['ee'], $this->_directoryList['supee']);
+            if ($this->_config['diff_file__add_ee_to_supee']) {
+                $this->_directoryList['supee'] = array_merge($this->_directoryList['ee'], $this->_directoryList['supee']);
+            }
         }
 
         if (!empty($filter) && isset($this->_directoryList[$filter]) && !empty($this->_directoryList[$filter])) {
