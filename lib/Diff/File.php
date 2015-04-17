@@ -4,11 +4,15 @@ class Diff_File extends Diff_Abstract
     protected $_url = '/file';
     protected $_isForced = 0;
 
-    public function __construct()
+    public function __construct($skipHtmlInit = false)
     {
-        $class = '';
-        if (!isset($_POST['diff']) || empty($_POST['diff'])) {$class = 'hello';}
-        $this->_HTML = new Html('Files', $class);
+        if (!$skipHtmlInit) {
+            $class = '';
+            if (!isset($_POST['diff']) || empty($_POST['diff'])) {
+                $class = 'hello';
+            }
+            $this->_HTML = new Html('Files', $class);
+        }
         parent::__construct();
         return true;
     }

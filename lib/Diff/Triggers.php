@@ -4,11 +4,15 @@ class Diff_Triggers extends Diff_Abstract
 {
     protected $_triggersList = false;
 
-    public function __construct()
+    public function __construct($skipHtmlInit = false)
     {
-        $class = '';
-        if (!isset($_POST['diff']) || empty($_POST['diff'])) {$class = 'hello';}
-        $this->_HTML = new Html('Triggers diff', $class);
+        if (!$skipHtmlInit) {
+            $class = '';
+            if (!isset($_POST['diff']) || empty($_POST['diff'])) {
+                $class = 'hello';
+            }
+            $this->_HTML = new Html('Triggers diff', $class);
+        }
         parent::__construct();
         return true;
     }

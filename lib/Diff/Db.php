@@ -2,11 +2,15 @@
 
 class Diff_Db extends Diff_Abstract
 {
-    public function __construct()
+    public function __construct($skipHtmlInit = false)
     {
-        $class = '';
-        if (!isset($_POST['diff']) || empty($_POST['diff'])) {$class = 'hello';}
-        $this->_HTML = new Html('Config diff', $class);
+        if (!$skipHtmlInit) {
+            $class = '';
+            if (!isset($_POST['diff']) || empty($_POST['diff'])) {
+                $class = 'hello';
+            }
+            $this->_HTML = new Html('Config diff', $class);
+        }
         parent::__construct();
         return true;
     }
@@ -229,7 +233,7 @@ class Diff_Db extends Diff_Abstract
                 foreach ($group as $key => $value) {
                     switch($key) {
                         case 'default': { $style = 'color: green;'; break; }
-                        case 'value': { $style = 'color: red; word-break: break-all;'; break; }
+                        case 'value': { $style = 'color: red; word-break: break-all'; break; }
                         default: { $style = ''; break;}
                     }
 

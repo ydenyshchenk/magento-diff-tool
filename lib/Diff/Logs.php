@@ -5,13 +5,15 @@ class Diff_Logs extends Diff_Abstract
     protected $_filesData = false;
     protected $_filesDataByHash = false;
     protected $_uploadedData = false;
-    public function __construct()
+    public function __construct($skipHtmlInit = false)
     {
-        $class = '';
-        if ( !($files = $this->_getUploadedFiles()) ) {
-            $class = 'hello';
+        if (!$skipHtmlInit) {
+            $class = '';
+            if (!($files = $this->_getUploadedFiles())) {
+                $class = 'hello';
+            }
+            $this->_HTML = new Html('Logs diff', $class);
         }
-        $this->_HTML = new Html('Logs diff', $class);
         parent::__construct();
         return true;
     }
