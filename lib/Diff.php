@@ -26,7 +26,7 @@ class Diff extends Diff_Abstract
       <div class="site-wrapper-inner">
         <div class="cover-container">
           <div class="inner cover tCenter">
-            <h1>Magento Debug Diff Tool</h1>
+            <h1>Magento Debug Diff Tool <sup class="beta">beta</sup></h1>
             <h2 class="cover-heading">Magento Support</h2>
             <p class="lead">' . $buttons . '</p>
             <p class="lead tJustify diff-form active">' . $descriptions . '</p>
