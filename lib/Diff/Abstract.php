@@ -180,6 +180,8 @@ abstract class Diff_Abstract
                 'ee' => (isset($matchesEE[1]) && !empty($matchesEE[1])) ? $matchesEE[1] : array(),
                 'supee' => (isset($matchesSupEE[1]) && !empty($matchesSupEE[1])) ? $matchesSupEE[1] : array(),
             );
+
+            $this->_directoryList['supee'] = array_merge($this->_directoryList['ee'], $this->_directoryList['supee']);
         }
 
         if (!empty($filter) && isset($this->_directoryList[$filter]) && !empty($this->_directoryList[$filter])) {
@@ -187,5 +189,14 @@ abstract class Diff_Abstract
         }
 
         return $this->_directoryList;
+    }
+
+    protected function _isUnserializable($string = '')
+    {
+        $data = @unserialize($string);
+        if (is_array($data)) {
+            return true;
+        }
+        return false;
     }
 }

@@ -120,7 +120,7 @@ class Diff_Db extends Diff_Abstract
         return $value;
     }
 
-    protected function _analyzeConfig($defaultConfigData, $coreConfigData)
+    protected function _analyzeConfig($defaultConfigData, $coreConfigData, $all = false)
     {
         $result = array(
             'core' => array(),
@@ -138,23 +138,25 @@ class Diff_Db extends Diff_Abstract
             if ($node === null) {
                 //custom
                 $result['custom'][(string)$c->path][] = array(
-                    'path' => (string)$c->path,
-                    'value' => $c->value
+                    'value' => $c->value,
+                    'default' => '',
+                    'scope' => $c->scope . '_' . $c->scope_id,
                 );
             } elseif ($node == $c->value) {
                 //default value
             } else {
                 //non-default
                 $result['core'][(string)$c->path][] = array(
-                    //'path' => (string)$c->path,
                     'value' => $c->value,
                     'default' => $node,
                     'scope' => $c->scope . '_' . $c->scope_id,
-                    //'scope_id' => $c->scope_id,
                 );
             }
         }
 
+        if ($all) {
+            return array_merge($result['core'], $result['custom']);
+        }
 
         return $result;
     }
@@ -204,7 +206,7 @@ class Diff_Db extends Diff_Abstract
         $defaultConfigData = $this->_getDefaultConfigData($eeVersion);
         $coreConfigData = $this->_getCoreConfigData($db);
         //analyze
-        $analyzeResults = $this->_analyzeConfig($defaultConfigData, $coreConfigData);
+        $analyzeResults = $this->_analyzeConfig($defaultConfigData, $coreConfigData, true);
 
         $analyzeResultsHtml = '<table class="table-bordered table-results">';
         $analyzeResultsHtml .= '<thead><tr>'
@@ -214,7 +216,8 @@ class Diff_Db extends Diff_Abstract
             . '<th>scope</th>'
             . '</tr></thead><tbody>';
 
-        $entities = $analyzeResults['core'];
+        //ksort($analyzeResults);
+        $entities = $analyzeResults;
 
         foreach ($entities as $path => $row) {
             $analyzeResultsHtml .= '<tr><td rowspan="' . count($row) . '"><strong>' . $path . '</strong></td>';
@@ -225,8 +228,8 @@ class Diff_Db extends Diff_Abstract
 
                 foreach ($group as $key => $value) {
                     switch($key) {
-                        case 'default': { $style = 'color: green'; break; }
-                        case 'value': { $style = 'color: red'; break; }
+                        case 'default': { $style = 'color: green;'; break; }
+                        case 'value': { $style = 'color: red; word-break: break-all;'; break; }
                         default: { $style = ''; break;}
                     }
 
@@ -235,9 +238,11 @@ class Diff_Db extends Diff_Abstract
                         foreach ($value as $k => $v) {
                             $analyzeResultsHtml .= '<div>' . $k . ' => ' . var_export($v, true) . '</div>';
                         }
+                    } elseif (preg_match('/[\:\;\"\{\}]/u', $value) && $this->_isUnserializable($value)) {
+                        $analyzeResultsHtml .= '<div>' . var_export(unserialize($value), true) . '</div>';
                     } else {
                         //$analyzeResultsHtml .= mb_substr($value, 0, 50);
-                        $analyzeResultsHtml .= preg_replace('/\,\s{0,}/u', ', ', $value);
+                        $analyzeResultsHtml .= preg_replace(array('/\,\s{0,}/u', '/\;\s{0,}/u'), array(', ', '; '), $value);
                     }
                     $analyzeResultsHtml .= '</td>';
                 }

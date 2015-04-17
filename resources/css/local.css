@@ -128,14 +128,20 @@ a {cursor: pointer;}
 .tRight {text-align: right;}
 
 
-
-
+.diff-item {cursor: pointer;}
+.diff-files {padding-top: 60px;}
 .diff-file {
-    margin: 30px;
-    padding: 0 30px 30px 30px;
-    border-bottom: 3px solid #333;
-    background-color: bisque;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
 }
+.diff-file-info {
+    display: none;
+}
+.diff-file.active .diff-file-info {
+    display: block;
+}
+
 .diff-string {background-color: #ffffff;}
 .diff-string-added {background-color: #71ff92;}
 .diff-string-deleted {background-color: #ff5c45;}

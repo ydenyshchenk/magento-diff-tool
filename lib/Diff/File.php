@@ -124,6 +124,7 @@ class Diff_File extends Diff_Abstract
 
             $i = 0;
 
+            echo '<div class="diff-files">';
             foreach ($diffData as $dFile) {
                 $dFile = trim($dFile);
                 if (empty($dFile)) {
@@ -139,8 +140,8 @@ class Diff_File extends Diff_Abstract
                 unset($dFileStrings[1]);
                 unset($dFileStrings[2]);
 
-                echo '<div class="jumbotron">';
-                echo '<h4><strong>' . $paths[1] . '</strong></h4>';
+                echo '<div class="diff-file diff-item jumbotron">';
+                echo '<h4><strong>' . $paths[1] . '</strong></h4><div class="diff-file-info">';
                 foreach ($dFileStrings as $string) {
                     $countA = $countD = 0;
                     $string = preg_replace('/^(\+){1}/ui', ' ', $string, -1, $countA);
@@ -149,15 +150,13 @@ class Diff_File extends Diff_Abstract
                     echo '<div class="diff-string' . (($countA > 0) ? '-added' : (($countD > 0) ? '-deleted' : '')) . '">'
                         . str_replace(' ', '&nbsp;', htmlspecialchars($string)) . '&nbsp;</div>';
                 }
-                echo '</div>';
+                echo '</div></div>';
 
-                if ($i == 10) {
-                    break;
-                }
+                // if ($i == 10) { break; }
 
                 $i++;
             }
-            echo '</div>';
+            echo '</div></div>';
         }
     }
 }

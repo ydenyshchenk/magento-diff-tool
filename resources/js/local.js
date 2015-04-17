@@ -15,7 +15,7 @@ function showForm(id, el)
     $(el).removeClass('btn-default').addClass('btn-warning');
 }
 
-$(document).ready(function(){
+$(document).ready(function() {
     $('.diff-item').click(function(){
         $(this).toggleClass('active');
     });
