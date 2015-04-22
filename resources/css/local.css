@@ -10,6 +10,9 @@ body.hello {
     /*text-shadow: 0 1px 3px rgba(0,0,0,.5);*/
 }
 .beta {color: #ff371c;}
+.m0 {margin: 0;}
+.pT50 {padding-top: 50px;}
+.pT60 {padding-top: 60px;}
 .mb5 {margin-bottom: 5px;}
 .mb10 {margin-bottom: 10px;}
 
