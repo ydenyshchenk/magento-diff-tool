@@ -43,6 +43,9 @@ class Diff_Logs extends Diff_Abstract
 
     protected function _parseLog($file, $groupByConnect = false)
     {
+        if (empty($file)) {
+            return array();
+        }
         $fileNameHash = $this->_getFileNameHash($file);
 
         if (
@@ -148,7 +151,9 @@ class Diff_Logs extends Diff_Abstract
 
     protected function _getUploadedFiles()
     {
-        if (empty($_FILES) || empty($_FILES['file0']['tmp_name']) || empty($_FILES['file1']['tmp_name'])) {
+        if (empty($_FILES) || empty($_FILES['file0']['tmp_name'])
+            //|| empty($_FILES['file1']['tmp_name'])
+        ) {
             return false;
         }
         if ($this->_uploadedData === false) {
@@ -160,7 +165,9 @@ class Diff_Logs extends Diff_Abstract
     protected function _unlinkUploadedFiles()
     {
         foreach($this->_uploadedData as $f) {
-            unlink($f['tmp_name']);
+            if (!empty($f) && !empty($f['tmp_name'])) {
+                unlink($f['tmp_name']);
+            }
         }
     }
 
@@ -176,8 +183,8 @@ class Diff_Logs extends Diff_Abstract
 
         echo '<div class="container" style="margin-top: 60px;">';
 
-        $file0 = $files['file0']['tmp_name'];
-        $file1 = $files['file1']['tmp_name'];
+        $file0 = (!empty($files['file0']['tmp_name'])) ? $files['file0']['tmp_name'] : '';
+        $file1 = (!empty($files['file1']['tmp_name'])) ? $files['file1']['tmp_name'] : '';
 
         $queries0 = $this->_parseLog($file0);
         $queries1 = $this->_parseLog($file1);
