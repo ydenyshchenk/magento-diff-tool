@@ -228,6 +228,5 @@ class Diff_Logs extends Diff_Abstract
                 . '</div></div>';
         }
 
-        //var_dump($unique);
     }
 }
