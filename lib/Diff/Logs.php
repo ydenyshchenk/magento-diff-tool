@@ -225,6 +225,7 @@ class Diff_Logs extends Diff_Abstract
                 . '<div class="diff-logs-info">' .(($q['bind']) ? '<div>Bind: ' . $q['bind'] . '</div>' : '')
                 . '<div>Affected: ' . $q['aff'] . '</div>'
                 . '<div>Time: ' . $q['time'] . '</div>'
+                . '<div class="diff-logs-trace">' . preg_replace('/\n/', '<br>', $q['trace']) . '</div>'
                 . '</div></div>';
         }
 

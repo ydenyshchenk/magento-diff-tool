@@ -196,7 +196,9 @@ a {cursor: pointer;}
 .diff-logs-left {border-left: 20px solid #ffe438; padding-left: 10px;}
 .diff-logs-right {border-right: 20px solid #ffe438; padding-right: 10px;}
 .diff-logs-info {margin-top: 10px; color: #6495ed;}
-.diff-logs.active {background-color: #ffe438;}
+.diff-logs-trace {display: none; margin-top: 10px;}
+.diff-logs.active {background-color: #fffc9b;}
+.diff-logs.active .diff-logs-trace {display: block;}
 
 .table-results {margin-top: 60px; margin-bottom: 50px; font-size: 12px; line-height: 1.5;}
 
