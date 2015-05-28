@@ -16,7 +16,7 @@ function showForm(id, el)
 }
 
 $(document).ready(function() {
-    $('.diff-item').click(function(){
-        $(this).toggleClass('active');
+    $('.diff-item > h4').click(function(){
+        $(this).parent().toggleClass('active');
     });
 });

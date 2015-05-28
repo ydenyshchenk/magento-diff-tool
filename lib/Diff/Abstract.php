@@ -88,8 +88,10 @@ abstract class Diff_Abstract
         if ($selected == '') {
             $selected = current($items);
         }
-        if (is_array($selected)) {
+        if ($selected && is_array($selected) && !empty($selected['name'])) {
             $selected = $selected['name'];
+        } elseif (!$selected) {
+            $selected = 'No items found';
         }
 
         $html = '<input id="' . $id . '_input" type="hidden" name="' . $name . '" value="' . $selected . '">';
@@ -101,12 +103,16 @@ abstract class Diff_Abstract
           <ul class="dropdown-menu" role="menu">';
 
 
-        foreach ($items as $v) {
-            if (is_array($v)) {
-                $html .= '<li><a onclick="select(\'#' . $id . '\', this)" data-value="' . $v['value'] . '">' . $v['name'] . '</a></li>';
-            } else {
-                $html .= '<li><a onclick="select(\'#' . $id . '\', this)" data-value="' . $v . '">' . $v . '</a></li>';
+        if (!empty($items)) {
+            foreach ($items as $v) {
+                if (is_array($v)) {
+                    $html .= '<li><a onclick="select(\'#' . $id . '\', this)" data-value="' . $v['value'] . '">' . $v['name'] . '</a></li>';
+                } else {
+                    $html .= '<li><a onclick="select(\'#' . $id . '\', this)" data-value="' . $v . '">' . $v . '</a></li>';
+                }
             }
+        } else {
+            $html .= '<li><a>No items found</a></li>';
         }
 
         $html .= '</ul></div>';
@@ -151,7 +157,7 @@ abstract class Diff_Abstract
             );
         }
 
-        if (!empty($filter) && isset($this->_dbList[$filter]) && !empty($this->_dbList[$filter])) {
+        if (!empty($filter) && isset($this->_dbList[$filter])) {
             return $this->_dbList[$filter];
         }
 
