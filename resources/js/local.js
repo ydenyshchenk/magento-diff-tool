@@ -2,7 +2,7 @@ function select(id, el)
 {
     name = $(el).html();
     val = $(el).attr('data-value');
-    //console.log(val);
+    console.log(id);
     $(id).html(name);
     $(id + '_input').val(val)
 }

@@ -171,9 +171,9 @@ class Diff_Db extends Diff_Abstract
         $entitiesSUPEE = $this->_getDbList('supee');
 
         $form = '<form method="post" action="' . BU . $this->tools['db']['url'] . '">Show configuration diff between ';
-        $form .= $this->_renderSelect('ee', 'diff[ee]', $entitiesEE, $ee);
+        $form .= $this->_renderSelect('db_ee', 'diff[ee]', $entitiesEE, $ee);
         $form .= ' and ';
-        $form .= $this->_renderSelect('supee', 'diff[supee]', $entitiesSUPEE, $supee);
+        $form .= $this->_renderSelect('db_supee', 'diff[supee]', $entitiesSUPEE, $supee);
         $form .= ' <input type="submit" value="Submit" class="btn btn-primary"></form>';
 
         return $form;

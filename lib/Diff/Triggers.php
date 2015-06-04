@@ -100,9 +100,9 @@ class Diff_Triggers extends Diff_Abstract
         $entitiesSUPEE = $this->_getDbList('supee');
 
         $form = '<form method="post" action="' . BU . $this->tools['triggers']['url'] . '">Show trigger statements diff between ';
-        $form .= $this->_renderSelect('ee', 'diff[ee]', $entitiesEE, $ee);
+        $form .= $this->_renderSelect('trigger_ee', 'diff[ee]', $entitiesEE, $ee);
         $form .= ' and ';
-        $form .= $this->_renderSelect('supee', 'diff[supee]', $entitiesSUPEE, $supee);
+        $form .= $this->_renderSelect('trigger_supee', 'diff[supee]', $entitiesSUPEE, $supee);
         $form .= ' <input type="submit" value="Submit" class="btn btn-primary"></form>';
 
         return $form;
@@ -159,7 +159,10 @@ class Diff_Triggers extends Diff_Abstract
             if (empty($t['local'])) {
                 $missedTriggers[$triggerName] = $t['core'];
                 $triggersDiff[$triggerName] = $t;
-            } elseif ($t['local']['statement'] != $t['core']['statement']) {
+            } elseif (
+                (!empty($t['core']['statement']) && $t['local']['statement'] != $t['core']['statement'])
+                || empty($t['core']['statement'])
+            ) {
                 $corruptedTriggers[$triggerName] = $t;
                 $triggersDiff[$triggerName] = $t;
             }

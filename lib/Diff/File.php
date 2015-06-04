@@ -22,7 +22,7 @@ class Diff_File extends Diff_Abstract
         $entities = $this->_getDirectoryList();
 
         $form = '<form method="post" action="' . BU . $this->tools['file']['url'] . '">Show diff of ';
-        $form .= $this->_renderSelect('currentPath', 'diff[compare_path]', $this->_config['core_paths'], $comparePath)
+        $form .= $this->_renderSelect('file_currentPath', 'diff[compare_path]', $this->_config['core_paths'], $comparePath)
             . ' between ';
         unset($entities['all']);
         foreach ($entities as $entityType=>$items) {
@@ -41,7 +41,7 @@ class Diff_File extends Diff_Abstract
             } else {
                 $s = $ee;
             }
-            $form .= $this->_renderSelect('entity' . $entityType, 'diff[' . $entityType . ']', $items, $s);
+            $form .= $this->_renderSelect('file_entity_' . $entityType, 'diff[' . $entityType . ']', $items, $s);
 
         }
         $form .= ' <input type="submit" value="Submit" class="btn btn-primary"></form>';
