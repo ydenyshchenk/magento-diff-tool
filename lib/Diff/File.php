@@ -66,8 +66,11 @@ class Diff_File extends Diff_Abstract
         $diffStorage = BP . DS . 'var' . DS . 'diffs';
         //$diffXclude = ' ';//'-x \'*.txt\'';
         $diffOptions = "-ENwbur";
-        $diffIgnore = "--ignore-matching-lines='Copyright (c)' --exclude=.svn";
-        $diffCommands = "$diffOptions $diffIgnore";
+        $diffIgnore = array(
+            "--ignore-matching-lines='Copyright (c)'",
+            "--exclude=.svn"
+        );
+        $diffCommands = "$diffOptions " . implode(' ', $diffIgnore);
 
         $path0 = $path1 = $corePath = '';
 
@@ -115,7 +118,6 @@ class Diff_File extends Diff_Abstract
 
             if (!file_exists($diffPath) or $this->_isForced) {
                 $cmd = "diff $diffCommands $path0 $path1 > $diffPath";
-                //echo $cmd . '<br>';
                 exec($cmd);
 
                 if (!file_exists($diffPath)) {
