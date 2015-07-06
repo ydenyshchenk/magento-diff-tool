@@ -195,28 +195,19 @@ class Diff_Triggers extends Diff_Abstract
             $html .= '</tbody></table>';
 
 
-            if ($missedTriggers) {
+            if ($missedTriggers || $corruptedTriggers) {
                 $html .= '<div class="well well-lg">';
                 $html .= 'Triggers install script:';
                 $html .= '<textarea style="width: 100%;" rows="100">delimiter //' . "\n";
 
                 foreach ($missedTriggers as $triggerName => $t) {
-                    $tTime = $t['timing'];
-                    $tEvent = $t['event'];
-                    $tTable = $t['table'];
-                    $tStatement = $t['statement'];
-
-                    $tStatement = preg_replace_callback('/mview\_event\_id\s\=\s\'(\d+)\'/', function ($matches) {
-                        global $eeDb, $supeeDb;
-                        $coreEventId = (int)$matches[1];
-                        $mviewEvent = $this->_getMviewEventName($coreEventId, $eeDb);
-                        $eventId = $this->_getMviewEventId($mviewEvent, $supeeDb);
-
-                        return "mview_event_id = '$eventId'";
-                    }, $tStatement);
-
-                    $html .= "CREATE TRIGGER $triggerName\n$tTime $tEvent\nON $tTable FOR EACH ROW \n$tStatement//\n";
+                    $html .= $this->_triggerStatement($triggerName, $t);
                 }
+
+                foreach ($corruptedTriggers as $triggerName => $t) {
+                    $html .= $this->_triggerStatement($triggerName, $t['core']);
+                }
+
                 $html .= '</textarea>';
                 $html .= '</div>';
             }
@@ -225,5 +216,27 @@ class Diff_Triggers extends Diff_Abstract
         }
 
         echo '<div class="container">' . $html . '</div>';
+    }
+
+    private function _triggerStatement($triggerName, $triggerData)
+    {
+        $html = '';
+        $action = "DROP TRIGGER IF EXISTS `$triggerName`// CREATE";
+        $tTime = $triggerData['timing'];
+        $tEvent = $triggerData['event'];
+        $tTable = $triggerData['table'];
+        $tStatement = $triggerData['statement'];
+
+        $tStatement = preg_replace_callback('/mview\_event\_id\s\=\s\'(\d+)\'/', function ($matches) {
+            global $eeDb, $supeeDb;
+            $coreEventId = (int)$matches[1];
+            $mviewEvent = $this->_getMviewEventName($coreEventId, $eeDb);
+            $eventId = $this->_getMviewEventId($mviewEvent, $supeeDb);
+
+            return "mview_event_id = '$eventId'";
+        }, $tStatement);
+
+        $html .= "$action TRIGGER `$triggerName`\n$tTime $tEvent\nON `$tTable` FOR EACH ROW \n$tStatement//\n";
+        return $html;
     }
 }
