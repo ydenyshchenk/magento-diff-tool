@@ -205,7 +205,9 @@ class Diff_Triggers extends Diff_Abstract
                 }
 
                 foreach ($corruptedTriggers as $triggerName => $t) {
-                    $html .= $this->_triggerStatement($triggerName, $t['core']);
+                    if (!empty($t['core'])) {
+                        $html .= $this->_triggerStatement($triggerName, $t['core']);
+                    }
                 }
 
                 $html .= '</textarea>';
