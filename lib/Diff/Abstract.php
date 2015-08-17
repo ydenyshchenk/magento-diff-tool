@@ -88,8 +88,10 @@ abstract class Diff_Abstract
         if ($selected == '') {
             $selected = current($items);
         }
+        $selectedName = $selected;
         if ($selected && is_array($selected) && !empty($selected['name'])) {
-            $selected = $selected['name'];
+            $selectedName = $selected['name'];
+            $selected = $selected['value'];
         } elseif (!$selected) {
             $selected = 'No items found';
         }
@@ -98,7 +100,7 @@ abstract class Diff_Abstract
         $html .= '
         <div class="btn-group">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            <span id="' . $id . '">' . $selected . '</span> <span class="caret"></span>
+            <span id="' . $id . '">' . $selectedName . '</span> <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">';
 
