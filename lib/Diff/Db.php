@@ -131,30 +131,32 @@ class Diff_Db extends Diff_Abstract
             'custom' => array()
         );
 
-        foreach ($coreConfigData as $c) {
-            $levels = explode('/', (string)$c->path);
+        if (!empty($coreConfigData)) {
+            foreach ($coreConfigData as $c) {
+                $levels = explode('/', (string)$c->path);
 
-            $node = $defaultConfigData;
-            foreach ($levels as $l) {
-                $node = $this->_expandTree($node, $l);
-            }
+                $node = $defaultConfigData;
+                foreach ($levels as $l) {
+                    $node = $this->_expandTree($node, $l);
+                }
 
-            if ($node === null) {
-                //custom
-                $result['custom'][(string)$c->path][] = array(
-                    'value' => $c->value,
-                    'default' => '',
-                    'scope' => $c->scope . '_' . $c->scope_id,
-                );
-            } elseif ($node == $c->value) {
-                //default value
-            } else {
-                //non-default
-                $result['core'][(string)$c->path][] = array(
-                    'value' => $c->value,
-                    'default' => $node,
-                    'scope' => $c->scope . '_' . $c->scope_id,
-                );
+                if ($node === null) {
+                    //custom
+                    $result['custom'][(string)$c->path][] = array(
+                        'value' => $c->value,
+                        'default' => '',
+                        'scope' => $c->scope . '_' . $c->scope_id,
+                    );
+                } elseif ($node == $c->value) {
+                    //default value
+                } else {
+                    //non-default
+                    $result['core'][(string)$c->path][] = array(
+                        'value' => $c->value,
+                        'default' => $node,
+                        'scope' => $c->scope . '_' . $c->scope_id,
+                    );
+                }
             }
         }
 
