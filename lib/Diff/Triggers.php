@@ -217,12 +217,12 @@ class Diff_Triggers extends Diff_Abstract
             $html .= '<div class="pT60"><div class="well well-lg"><h1 class="m0">Triggers are identical</h1></div></div>';
         }
 
-        if (!empty($triggersMerged['core'])) {
+        if (!empty($triggersMerged)) {
             $html .= '<div class="well well-lg">';
             $html .= 'All triggers install script:';
             $html .= '<textarea style="width: 100%;" rows="100">delimiter //' . "\n";
-            foreach ($triggersMerged['core'] as $triggerName => $t) {
-                $html .= $this->_triggerStatement($triggerName, $t);
+            foreach ($triggersMerged as $triggerName => $t) {
+                $html .= $this->_triggerStatement($triggerName, $t['core']);
             }
             $html .= '</textarea>';
             $html .= '</div>';
