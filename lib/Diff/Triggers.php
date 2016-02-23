@@ -5,7 +5,7 @@ class Diff_Triggers extends Diff_Abstract
     protected $_triggersList = false;
     protected $_mviewEvents = false;
     protected $_mviewEventIds = false;
-    protected $_prefix = false;
+    public $prefix = false;
 
     public function __construct($skipHtmlInit = false)
     {
@@ -51,9 +51,9 @@ class Diff_Triggers extends Diff_Abstract
     {
         $this->_db->query('use `' . $db . '`');
         $table = $this->_db->query("show tables like '%core_config_data';")->fetchColumn(0);
-        $this->_prefix = preg_replace('/core_config_data/', '', $table);
+        $this->prefix = preg_replace('/core_config_data/', '', $table);
 
-        return $this->_prefix;
+        return $this->prefix;
     }
 
     protected function _getMviewEvents($db, $getIds = false)
@@ -137,14 +137,14 @@ class Diff_Triggers extends Diff_Abstract
 
         $coreTriggers = $this->_getTriggersList($eeDb);
         $localTriggers = $this->_getTriggersList($supeeDb);
-
         $triggersMerged = array();
         foreach ($coreTriggers as $triggerName => $triggerData) {
             $triggerName = preg_replace("/trg_/", "trg_$prefix", $triggerName);
             $statement = $triggerData['statement'];
-            $statement = preg_replace_callback('/(INTO|JOIN|UPDATE) \`([a-z\_]+)\`/', function($matches) {
-                return $matches[1] . ' `' . $this->_prefix . $matches[2] . '`';
+            $statement = preg_replace_callback('/(INTO|JOIN|UPDATE) \`([a-z\_]+)\`/', function($matches) use ($prefix) {
+                return $matches[1] . ' `' . $prefix . $matches[2] . '`';
             }, $statement);
+            $triggerData['table'] = $prefix . $triggerData['table'];
             $triggerData['statement'] = $statement;
             $triggersMerged[$triggerName]['core'] = $triggerData;
         }
@@ -217,11 +217,11 @@ class Diff_Triggers extends Diff_Abstract
             $html .= '<div class="pT60"><div class="well well-lg"><h1 class="m0">Triggers are identical</h1></div></div>';
         }
 
-        if ($coreTriggers) {
+        if (!empty($triggersMerged['core'])) {
             $html .= '<div class="well well-lg">';
             $html .= 'All triggers install script:';
             $html .= '<textarea style="width: 100%;" rows="100">delimiter //' . "\n";
-            foreach ($coreTriggers as $triggerName => $t) {
+            foreach ($triggersMerged['core'] as $triggerName => $t) {
                 $html .= $this->_triggerStatement($triggerName, $t);
             }
             $html .= '</textarea>';
