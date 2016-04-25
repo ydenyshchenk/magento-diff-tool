@@ -27,7 +27,7 @@ abstract class Diff_Abstract
     protected function _getMagentoVersion($magentoRoot)
     {
         $Mage = $magentoRoot . '/app/Mage.php';
-        if (!file_exists($Mage)) {
+        if (!file_exists($Mage) || !is_readable($Mage)) {
             return '';
         }
 
