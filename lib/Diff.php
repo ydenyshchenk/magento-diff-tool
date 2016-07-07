@@ -17,8 +17,9 @@ class Diff extends Diff_Abstract
         foreach ($this->tools as $t) {
             $buttons .= '<a onclick="showForm(\'' . $t['class'] . '\', this);" class="btn btn-lg btn-default">' . $t['name'] . '</a> ';
             $descriptions .= '<strong>' . $t['name'] . '</strong> - ' . $t['desc'] . '<br/>';
-            $$t['class'] = new $t['class'](true);
-            $forms .= '<div id="diff-form-' . $t['class'] . '" class="lead diff-form">' . $$t['class']->renderForm() . '</div>';
+            $class = $t['class'];
+            $$class = new $class(true);
+            $forms .= '<div id="diff-form-' . $t['class'] . '" class="lead diff-form">' . $$class->renderForm() . '</div>';
         }
 
 

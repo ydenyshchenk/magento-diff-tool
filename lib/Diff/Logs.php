@@ -99,9 +99,9 @@ class Diff_Logs extends Diff_Abstract
                     'id' => $i,
                     'sql' => $sql,
                     'bind' => ((!empty($queryTemp['BIND'])) ? mb_strcut(implode(' ', $queryTemp['BIND']), 6) : ''),
-                    'aff' => mb_strcut(implode('', $queryTemp['AFF']), 5),
-                    'time' => mb_strcut(implode('', $queryTemp['TIME']), 6),
-                    'trace' => implode("\n", $queryTemp['TRACE']),
+                    'aff' => ((!empty($queryTemp['AFF'])) ? mb_strcut(implode(' ', $queryTemp['AFF']), 5) : ''),
+                    'time' => ((!empty($queryTemp['TIME'])) ? mb_strcut(implode(' ', $queryTemp['TIME']), 6) : ''),
+                    'trace' => ((!empty($queryTemp['TRACE'])) ? implode("\n", $queryTemp['TRACE']) : ''),
                     'hash' => $hash
                 );
 
