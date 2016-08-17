@@ -222,7 +222,20 @@ class Diff_Triggers extends Diff_Abstract
             $html .= 'All triggers install script:';
             $html .= '<textarea style="width: 100%;" rows="100">delimiter //' . "\n";
             foreach ($triggersMerged as $triggerName => $t) {
-                $html .= $this->_triggerStatement($triggerName, $t['core']);
+                if (!empty($t['core'])) {
+                    $html .= $this->_triggerStatement($triggerName, $t['core']);
+                }
+            }
+            $html .= '</textarea>';
+            $html .= '</div>';
+        }
+
+        if (!empty($localTriggers)) {
+            $html .= '<div class="well well-lg">';
+            $html .= 'Delete all local triggers script:';
+            $html .= '<textarea style="width: 100%;" rows="100">' . "\n";
+            foreach ($localTriggers as $triggerName => $t) {
+                $html .= 'DROP TRIGGER `' . $triggerName . '`;' . "\n";
             }
             $html .= '</textarea>';
             $html .= '</div>';
