@@ -235,7 +235,7 @@ class Diff_Triggers extends Diff_Abstract
             $html .= 'Delete all local triggers script:';
             $html .= '<textarea style="width: 100%;" rows="100">' . "\n";
             foreach ($localTriggers as $triggerName => $t) {
-                $html .= 'DROP TRIGGER `' . $triggerName . '`;' . "\n";
+                $html .= 'DROP TRIGGER IF EXISTS `' . $triggerName . '`;' . "\n";
             }
             $html .= '</textarea>';
             $html .= '</div>';
